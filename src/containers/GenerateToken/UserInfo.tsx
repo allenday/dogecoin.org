@@ -13,9 +13,9 @@ const UserInfo: React.FC = ({
   message,
   publicKey,
   secretKey,
-  username,
+  twitter,
 }) => {
-  const publicKeyUrl = `https://proofof.dog/addr?publicKey=${publicKey}`
+  const publicKeyUrl = `https://proofof.dog/addr/${publicKey}`
   const [
     saveText,
     downloadText,
@@ -53,6 +53,7 @@ const UserInfo: React.FC = ({
           <S.QRWrapper id="qr-link">
             <QRCode
               info="USER_CARD"
+              title={twitter}
               value={publicKeyUrl}
             />
           </S.QRWrapper>
@@ -62,7 +63,9 @@ const UserInfo: React.FC = ({
         <S.StepCol xs={12} sm={6}>
           <S.QRWrapper id="qr-secret">
             <QRCode
+              color="crimson"
               info="SECRET_KEY"
+              title={twitter}
               value={secretKey}
             />
           </S.QRWrapper>

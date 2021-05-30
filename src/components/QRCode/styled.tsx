@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { rem } from "polished"
 
 export const QRWrapper = styled.div`
-  background-color: rgba(217,200,96,255);
+  background-color: ${({ bgColor }) => bgColor};
   height: 355px;
   margin: 0 0 ${rem(20)};
   padding: 20px;

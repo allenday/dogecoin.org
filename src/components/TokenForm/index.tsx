@@ -35,10 +35,13 @@ const TokenForm: React.FC = ({ onSubmit }) => {
     const dogname = localStorage.getItem('dogname')
     const twitter = localStorage.getItem('twitter')
 
-    localStorage.removeItem('dogname')
-    localStorage.removeItem('twitter')
+    if ( !!dogname && !!twitter ) {
+      localStorage.removeItem('dogname')
+      localStorage.removeItem('twitter')
 
-    setValues({ ...values, dogname, twitter })
+      setValues({ dogname, twitter })
+      handleSubmit({ dogname, twitter })
+    }
   }, [])
 
   return (

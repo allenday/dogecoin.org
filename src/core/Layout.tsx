@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Helmet from "react-helmet"
 import { IntlProvider } from "react-intl"
 import { useStaticQuery, graphql, withPrefix } from "gatsby"
@@ -16,15 +16,6 @@ const phrases = {
   'ru': ru,
   'zh': zh,
 }
-const language = navigator.language.split(/[-_]/)[0];
-const messages = language === 'en' ? phrases['en'] : { ...phrases['en'], ...phrases[language] }
-for (let k of new Map([en]).keys()) {
-  //TODO fix override logic from DEFAULT_LANG en-US
-  if (!new Map([messages]).has(k)) {
-    messages[k] = en[k]
-  }
-}
-
 
 import locale from "../config/locale"
 import theme from "../config/styled/theme"
@@ -40,6 +31,8 @@ interface Props {
 }
 
 const Layout: React.FC<Props> = ({ title, description, isSecondaryHeader = false, children }: Props) => {
+  const [language, setLanguage] = useState('en')
+  const messages = language === 'en' ? phrases['en'] : { ...phrases['en'], ...phrases[language] }
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -54,6 +47,10 @@ const Layout: React.FC<Props> = ({ title, description, isSecondaryHeader = false
     `,
   )
   const { title: defaultTitle, description: defaultDescription } = site.siteMetadata
+
+  useEffect(() => {
+    setLanguage(navigator.language.split(/[-_]/)[0])
+  }, [])
 
   return (
     <IntlProvider locale={language} messages={messages}>

@@ -6,22 +6,17 @@ import { useFormatMessages } from "../../utils/hooks"
 import * as S from "./styled"
 
 const ComponentQRCode: React.FC = ({
+  color = 'gold',
   info,
-  title = 'DOG_TAG',
+  title,
   value,
 }) => {
-  const [
-    infoText,
-    titleText,
-  ] = useFormatMessages([
-    { id: info },
-    { id: title },
-  ])
+  const [infoText] = useFormatMessages([{ id: info }])
 
   return (
-    <S.QRWrapper>
+    <S.QRWrapper bgColor={color}>
       <S.QRInfo>{infoText}</S.QRInfo>
-      <S.QRTitle>{titleText}</S.QRTitle>
+      <S.QRTitle>{title}</S.QRTitle>
       <QRCode
         imageSettings={{
           height: 90,
