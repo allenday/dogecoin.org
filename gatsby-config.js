@@ -13,5 +13,17 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-styled-components",
     { resolve: "gatsby-plugin-react-svg", options: { rule: { include: /assets/ } } },
+    {
+      resolve: 'gatsby-plugin-load-script',
+      options: {
+        src: '/js/crypto-signature.js',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-load-script',
+      options: {
+        src: '/js/wallet-generator.js',
+      },
+    },
   ],
 }

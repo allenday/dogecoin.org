@@ -10,7 +10,7 @@ const GenerateToken: React.FC = ({
 }) => {
   const [userInfo, setUserInfo] = useState(null)
 
-  const generateKey = ({ dogname, twitter }) => {
+  const handleSubmit = ({ dogname, twitter }) => {
     const key = new window.Bitcoin.ECKey(false)
     const publicKey = key.getBitcoinAddress()
     const secretKey = key.getBitcoinWalletImportFormat()
@@ -25,16 +25,6 @@ const GenerateToken: React.FC = ({
 
     setUserInfo(info)
     onGenerated(info)
-  }
-
-  const handleSubmit = ({ dogname, twitter }) => {
-    if ( !window.Bitcoin ) {
-      window.addEventListener('load', () => {
-        generateKey({ dogname, twitter })
-      });
-    } else {
-      generateKey({ dogname, twitter })
-    }
   }
 
   return (

@@ -82,9 +82,6 @@ const Layout: React.FC<Props> = ({ title, description, isSecondaryHeader = false
 
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-
-        <script type="text/javascript" src={withPrefix("/js/crypto-signature.js")} />
-        <script type="text/javascript" src={withPrefix("/js/wallet-generator.js")} />
       </Helmet>
 
       <ThemeProvider theme={theme}>

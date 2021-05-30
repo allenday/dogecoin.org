@@ -166,3 +166,7 @@ export const DecorWrapper = styled(Decor)`
 export const Text = styled.p`
   ${({ center }) => center && `text-align: center;`}
 `
+
+export const Div = styled.div`
+  ${({ textCenter }) => textCenter && `text-align: center;`}
+`

@@ -39,7 +39,7 @@ const SectionLead: React.FC = () => {
           </Decor>
         ))}
       </>
-      <Row middle="sm" reverse="sm" style={{ height: "100%" }}>
+      <Row middle="sm" reverse={true} style={{ height: "100%" }}>
         <Col xs={12} sm={6}>
           <S.Doge>
             <S.Circle>
