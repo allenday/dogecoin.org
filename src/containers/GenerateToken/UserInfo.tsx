@@ -53,7 +53,7 @@ const UserInfo: React.FC = ({
           <S.QRWrapper id="qr-link">
             <QRCode
               info="USER_CARD"
-              title={twitter}
+              title={dogname}
               value={publicKeyUrl}
             />
           </S.QRWrapper>
@@ -65,7 +65,7 @@ const UserInfo: React.FC = ({
             <QRCode
               color="crimson"
               info="SECRET_KEY"
-              title={twitter}
+              title={dogname}
               value={secretKey}
             />
           </S.QRWrapper>

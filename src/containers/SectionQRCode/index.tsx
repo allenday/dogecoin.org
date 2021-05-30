@@ -18,7 +18,8 @@ const SectionQRCode: React.FC = ({ publicKey }) => {
   ])
 
   useEffect(() => {
-    axios.get(`https://proofof.dog/api/addr/${publicKey}`)
+    //axios.get(`https://proofof.dog/api/addr/${publicKey}`)
+    axios.get(`http://34.121.60.46:8082/api/addr/${publicKey}`)
       .then(({ data }) => {
         if ( !data.error ) {
           setUserInfo(data)
@@ -33,8 +34,9 @@ const SectionQRCode: React.FC = ({ publicKey }) => {
     <S.SectionWrapper>
       <Section as={S.RadiusWrapper}>
         <Row center="xs">
-          <QRCode
+          <QRCode            
             info="PUBLIC_KEY"
+            title={userInfo.username}
             value={userInfo.publicKey}
           />
         </Row>
