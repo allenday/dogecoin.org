@@ -1,11 +1,12 @@
 export default {
-  ABOUT_TITLE: "<span>The future of<br/>Dog Finance</span>",
-  MUCH_TEXT: "Much",
+  //ABOUT_TITLE: "<span>Instant</br>Bank Account<br/>for your Dog</span>",
+  ABOUT_TITLE: "<span>Financial<br/>Freedom<br/>for all Dogs</span>",
   LEAD_BUTTON_TEXT_1: "Let’s Wow",
   LEAD_BUTTON_TEXT_2: "Start Now",
-  ABOUT_TEXT_LEAD: "1B doge want hodl, shibe need loot.",
+  ABOUT_TEXT_LEAD: " ",
   ABOUT_TEXT:
-    "<p>Of the 471 million pet dogs in the world, fewer than 0.001% have their own bank accounts. That’s not even counting the other 421 million free-range dogs that are not only unbanked, but also remain outside the domestication system. There are nearly <span style=\"font-weight:bold; color:#FFDD03\">one billion unbanked dogs</span>.</p><p><u>Proof-of-Dog brings social justice to all dogs</u>.</p><p>When you <a style=\"font-weight:bold; color:#FFDD03\" href=\"https://en.wikipedia.org/wiki/Know_your_customer\">#KYD</a> (know your doge), you create a Dogecoin address for your pup, and link it to your Twitter profile.</p><p>As a responsible dog owner, you want your beloved dog to stay healthy and happy by giving them proper documentation and the best financial tools available.</p><p>Dogecoin is money for dogs, and <span style=\"font-weight:bold;color:#FFDD02\">#proofOfDog</span> is the future.</p>",
+    "<h3>Get instant access to the financial system for your dog</h3><p>Fewer than 0.001% of the world's dogs have bank accounts - that's nearly <b style=\"color:#FFDD03\">1 billion unbanked dogs</b>. This restricts dogs' access to financial services such as <a href=\"https://www.youtube.com/watch?v=orjTdQf0Rn4\" style=\"color:#C3F1FF; text-decoration:underline\">401(k)9</a> retirement accounts and \"borrowing\" money for treats.</p><p><h3>How it Works</h3><p>Like banks, proofof.dog uses a fuss-free, state of the art <b style=\"color:#FFDD03\">#KYD</b> (<a href=\"https://en.wikipedia.org/wiki/Know_your_customer\" style=\"color:#C3F1FF; text-decoration:underline\">know your doge</a>) process to safely create a digital identity for your dog. Simply tweet a photo of your dog and his or her <b style=\"color:#FFDD03\">proofof.dog QR code</b> to <a href=\"https://twitter.com/proofofdog\" style=\"color:#C3F1FF; text-decoration:underline\">@proofofdog</a>.</p>",
+//Of the 471 million pet dogs in the world, fewer than 0.001% have their own bank accounts. That’s not even counting the other 421 million free-range dogs that are not only unbanked, but also remain outside the domestication system. There are nearly <span style=\"font-weight:bold; color:#FFDD03\">one billion unbanked dogs</span>.</p><p><u>Proof-of-Dog brings social justice to all dogs</u>.</p><p>When you <a style=\"font-weight:bold; color:#FFDD03\" href=\"https://en.wikipedia.org/wiki/Know_your_customer\">#KYD</a> (know your doge), you create a Dogecoin address for your pup, and link it to your Twitter profile.</p><p>As a responsible dog owner, you want your beloved dog to stay healthy and happy by giving them proper documentation and the best financial tools available.</p><p>Dogecoin is money for dogs, and <span style=\"font-weight:bold;color:#FFDD02\">#proofOfDog</span> is the future.</p>",
   GUIDE_TITLE: "Give your doge the gift of Dogecoin",
   GUIDE_STEP_1_SUBTITLE: "STEP 1",
   GUIDE_STEP_1_TITLE: "Make a QR code wallet",
@@ -72,4 +73,15 @@ export default {
   TWEET_LINK: "Tweet link",
   TWEET_MESSAGE: "Tweet message",
   USER_CARD: "User card",
+  BANNER_WOW: "much wow",
+  BANNER_RANDOM: "such random",
+  TYPEWRITER_MUCH: "Much",
+  TYPEWRITER_SUCH: "Such",
+  TYPEWRITER_VERY: "Very",
+  TYPEWRITER_SO: "So",
+  TYPEWRITER_DOGE: "Doge",
+  TYPEWRITER_CRYPTO: "Crypto",
+  TYPEWRITER_COIN: "Coin",
+  TYPEWRITER_HODL: "HODL",
+
 }

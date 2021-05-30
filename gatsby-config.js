@@ -3,9 +3,9 @@ module.exports = {
   // pathPrefix: "/dogecoin.org",
   // assetPrefix: "https://dogecoinorg.github.io/dogecoin.org/",
   siteMetadata: {
-    name: "dogecoin.org",
-    title: "dogecoin.org",
-    description: `dogecoin.org`,
+    name: "proofof.dog",
+    title: "Finacial Freedom for Dogs #proofOfDog",
+    description: `Social Justice and Financial Freedom for all Dogs Everywhere`,
   },
   plugins: [
     "gatsby-plugin-image",

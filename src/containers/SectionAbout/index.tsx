@@ -5,6 +5,7 @@ import { Row, Col } from "react-styled-flexboxgrid"
 import Section from "../../components/Section"
 import Carousel from "../../components/Carousel"
 import Banner from "../../components/Banner"
+import Button from "../../components/Button"
 
 import { useFormatMessages } from "../../utils/hooks"
 
@@ -20,10 +21,13 @@ const hashtags = [
 ]
 
 const SectionAbout: React.FC = () => {
-  const [title, lead, text] = useFormatMessages([
+  const [title, lead, text, cta, wow, random] = useFormatMessages([
     { id: "ABOUT_TITLE" },
     { id: "ABOUT_TEXT_LEAD" },
     { id: "ABOUT_TEXT" },
+    { id: "LEAD_BUTTON_TEXT_1" },
+    { id: "BANNER_WOW" },
+    { id: "BANNER_RANDOM" },
   ])
 
   return (
@@ -39,10 +43,15 @@ const SectionAbout: React.FC = () => {
             <S.Text dangerouslySetInnerHTML={{ __html: text }} />
           </Col>
         </Row>
+
+        <Row center="xs">
+          <Button text={cta} backgroundColor="mint" href="/getting-started" gatsbyLink />
+        </Row>
+
       </Section>
 
       <S.BannerContainer>
-        <Banner texts={["much wow", "such random"]} />
+        <Banner texts={[wow, random]} />
       </S.BannerContainer>
 
       <Section as={S.WrapperLast}>

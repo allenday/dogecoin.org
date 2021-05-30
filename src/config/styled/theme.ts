@@ -48,6 +48,7 @@ const theme = {
     success: "#3acabf",
     warning: "#ffe053",
     mint: "#98ede3",
+    gold: "#ffd203",
   },
   transition: {
     base: "0.3s ease",

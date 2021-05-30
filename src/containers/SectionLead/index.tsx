@@ -18,7 +18,17 @@ import { IconPlay, IconTwitter, IconGithub } from "../../icons"
 import * as S from "./styled"
 
 const SectionLead: React.FC = () => {
-  const [linkText, videoText, muchText] = useFormatMessages([{ id: "LEAD_BUTTON_TEXT_1" }, { id: "LEAD_BUTTON_TEXT_2" }, { id: "MUCH_TEXT"}])
+  const [linkText, videoText, much, such, very, so] = useFormatMessages([
+      { id: "LEAD_BUTTON_TEXT_1" },
+      { id: "LEAD_BUTTON_TEXT_2" },
+      { id: "TYPEWRITER_MUCH"},
+      { id: "TYPEWRITER_SUCH"},
+      { id: "TYPEWRITER_VERY"},
+      { id: "TYPEWRITER_SO"},
+    ])
+
+  const qualifiers = [much, such, very, so]
+  const qualifier = qualifiers[Math.floor(Math.random() * qualifiers.length)]
 
   return (
     <Section as={S.Wrapper}>
@@ -56,7 +66,7 @@ const SectionLead: React.FC = () => {
         </Col>
         <Col xs={12} sm={6}>
           <S.Title>
-            <span>{muchText}</span>
+            <span>{qualifier}</span>
             <TypeWriter />
           </S.Title>
           <S.ShapesWrapper>

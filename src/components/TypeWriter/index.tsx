@@ -1,15 +1,20 @@
 import React, { useState } from "react"
 import Typewriter from "typewriter-effect"
 
+import { useFormatMessages } from "../../utils/hooks"
 import Rect from "../../assets/shapes/rect-text.svg"
 import * as S from "./styled"
 
-// TODO: const wordsTop = ["Much", "Such", "Very", "So"]
-// Need additional details
 const wordsBottom = ["Doge", "Crypto", "Coin", "Hodl"]
 
 const TypeWriter: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [doge, crypto, coin, hodl] = useFormatMessages([
+      { id: "TYPEWRITER_DOGE" },
+      { id: "TYPEWRITER_CRYPTO" },
+      { id: "TYPEWRITER_COIN" },
+      { id: "TYPEWRITER_HODL" },
+    ])
 
   return (
     <S.Wrapper wordIndex={currentIndex}>
@@ -19,19 +24,19 @@ const TypeWriter: React.FC = () => {
           onInit={(typewriter) => {
             typewriter // TODO: simplify & refactor
               .callFunction(() => setCurrentIndex(0))
-              .typeString(wordsBottom[0])
+              .typeString(doge)
               .pauseFor(500)
               .deleteAll()
               .callFunction(() => setCurrentIndex(1))
-              .typeString(wordsBottom[1])
+              .typeString(crypto)
               .pauseFor(500)
               .deleteAll()
               .callFunction(() => setCurrentIndex(2))
-              .typeString(wordsBottom[2])
+              .typeString(coin)
               .pauseFor(500)
               .deleteAll()
               .callFunction(() => setCurrentIndex(3))
-              .typeString(wordsBottom[3])
+              .typeString(hodl)
               .pauseFor(500)
               .start()
           }}

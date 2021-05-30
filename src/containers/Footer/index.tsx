@@ -12,13 +12,13 @@ import { LINKS } from "../../utils/const"
 import * as S from "./styled"
 
 const Footer: React.FC = () => {
-  const [followUs] = useFormatMessages([{ id: "FOOTER_FOLLOW_US" }])
+  const [followUs,wow,random] = useFormatMessages([{ id: "FOOTER_FOLLOW_US" },{ id: "BANNER_WOW" },{ id: "BANNER_RANDOM" }])
 
   return (
     <S.Footer>
       <S.Wrapper>
         <S.Banner>
-          <Banner type="bold" texts={["much wow", "such random"]} />
+          <Banner type="bold" texts={[wow, random]} />
         </S.Banner>
         <CustomGrid>
           <Row center="xs">
