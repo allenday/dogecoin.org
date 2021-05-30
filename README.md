@@ -1,5 +1,7 @@
 # dogecoin.org
 
+run dev server: npm start
+
 ## Contributors
 
 <!-- readme: contributors -start -->
