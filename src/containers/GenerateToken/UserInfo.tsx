@@ -1,6 +1,5 @@
-import React from "react"
+import React, { useRef } from "react"
 import { Row } from "react-styled-flexboxgrid"
-import * as htmlToImage from "html-to-image"
 import { useFormatMessages } from "../../utils/hooks"
 
 import Button from "../../components/Button"
@@ -15,6 +14,8 @@ const UserInfo: React.FC = ({
   secretKey,
   twitter,
 }) => {
+  const pbKeyRef = useRef()
+  const scKeyRef = useRef()
   const publicKeyUrl = `https://proofof.dog/addr/${publicKey}`
   const [
     saveText,
@@ -32,36 +33,31 @@ const UserInfo: React.FC = ({
     { id: "SECRET_KEY" },
   ])
 
-  const handleSave = (selector) => () => {
-    htmlToImage.toPng(document.getElementById(selector))
-      .then(dataUrl => {
-        const link = document.createElement('a')
-
-        link.download = `${selector}.jpeg`
-        link.href = dataUrl
-        link.target = '_blanc'
-        link.click()
-      })
+  const handleDownload = (ref, fileName) => async () => {
+    const expLib = await require('react-component-export-image')
+    expLib.exportComponentAsJPEG(ref, { fileName })
   }
-
-  const handleDownload = () => {}
 
   return (
     <>
       <S.ShapesRow center="xs">
         <S.StepCol xs={12} sm={6}>
-          <S.QRWrapper id="qr-link">
+          <S.QRWrapper ref={pbKeyRef}>
             <QRCode
               info="USER_CARD"
               title={dogname}
               value={publicKeyUrl}
             />
           </S.QRWrapper>
-          <Button text={saveText} backgroundColor="primary" onClick={handleSave('qr-link')} gatsbyLink />
+          <Button
+            backgroundColor="primary"
+            onClick={handleDownload(pbKeyRef, 'UserCard')}
+            text={saveText}
+          />
           <S.TextRow bold color="#00a000" mTop={5}>{takePictureText}</S.TextRow>
         </S.StepCol>
         <S.StepCol xs={12} sm={6}>
-          <S.QRWrapper id="qr-secret">
+          <S.QRWrapper ref={scKeyRef}>
             <QRCode
               color="crimson"
               info="SECRET_KEY"
@@ -69,7 +65,11 @@ const UserInfo: React.FC = ({
               value={secretKey}
             />
           </S.QRWrapper>
-          <Button text={downloadText} backgroundColor="primary" onClick={handleSave('qr-secret')} gatsbyLink />
+          <Button
+            backgroundColor="primary"
+            onClick={handleDownload(scKeyRef, 'SecretKey')}
+            text={downloadText}
+          />
           <S.TextRow bold color="#DD0000" mTop={5}>{saveSecretText}</S.TextRow>
         </S.StepCol>
       </S.ShapesRow>
