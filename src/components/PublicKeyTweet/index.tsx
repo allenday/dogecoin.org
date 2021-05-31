@@ -11,7 +11,7 @@ const PublicKeyTweet: React.FC = ({
   publicKey,
 }) => {
   const publicKeyUrl = `https://proofof.dog/addr?dogecoin=${publicKey}`
-  const tweetMessage = `${dogname}'s #proofOfDog\n\n${message}\n\n#KYD`;
+  const tweetMessage = `.@proofofdog Here's a #KYD for ${dogname}\n\n${message}\n\n#proofofdog`;
   const [
     rememberAttachText,
     tweetMessageText,
