@@ -68,7 +68,7 @@ const UserInfo: React.FC = ({
           <Button
             backgroundColor="primary"
             onClick={handleDownload(scKeyRef, 'SecretKey')}
-            text={downloadText}
+            text={saveText}
           />
           <S.TextRow bold color="#DD0000" mTop={5}>{saveSecretText}</S.TextRow>
         </S.StepCol>
