@@ -16,7 +16,7 @@ const UserInfo: React.FC = ({
 }) => {
   const pbKeyRef = useRef()
   const scKeyRef = useRef()
-  const publicKeyUrl = `https://proofof.dog/addr/${publicKey}`
+  const publicKeyUrl = `https://proofof.dog/addr?dogecoin=${publicKey}`
   const [
     saveText,
     downloadText,
