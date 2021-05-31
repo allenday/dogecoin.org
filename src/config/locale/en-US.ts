@@ -57,7 +57,7 @@ export default {
   GET_STARTED_SUBTITLE: "It is very easy to give your doge Dogecoin",
   FOOTER_FOLLOW_US: "Follow us",
   FOOTER_OR: "or",
-  INPUT_USERNAME: "your @username",
+  INPUT_USERNAME: "your Twitter @username",
   INPUT_DOGNAME: "your doge's name",
   DOG_TAG: "DogTag",
   DOWNLOAD: "Download",
