@@ -20,7 +20,7 @@ const ComponentQRCode: React.FC = ({
       <QRCode
         imageSettings={{
           height: 90,
-          src: '/images/dogecoin-icon.png',
+          src: '/images/proofofdog-icon.png',
           width: 90,
         }}
         level="H"
