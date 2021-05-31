@@ -114,12 +114,12 @@ const SectionMain: React.FC = () => {
           <S.CardsContainerCol md={12}>
             <S.CardsRow>
               <Col xs={12}>
-                <S.Text center>
+                <S.Div textCenter>
                   <TwitterFollowButton
                     screenName={'proofOfDog'}
                     options={{ size: 'large', showCount: false }}
                   />
-                </S.Text>
+                </S.Div>
               </Col>
             </S.CardsRow>
           </S.CardsContainerCol>

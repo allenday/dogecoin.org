@@ -10,7 +10,7 @@ const PublicKeyTweet: React.FC = ({
   message,
   publicKey,
 }) => {
-  const publicKeyUrl = `https://proofof.dog/addr?publicKey=${publicKey}`
+  const publicKeyUrl = `https://proofof.dog/addr/${publicKey}`
   const tweetMessage = `${dogname}'s #proofOfDog\n\n${message}\n\n#KYD`;
   const [
     rememberAttachText,
@@ -37,8 +37,8 @@ const PublicKeyTweet: React.FC = ({
       </S.RowTweetMessage>
       <S.RowTweet>
         <TwitterShareButton
-          url={publicKeyUrl}
-          options={{ text: tweetMessage, via: 'proofOfDog', size: 'large' }}
+          url={' '}
+          options={{ text: tweetMessage, size: 'large' }}
         />
       </S.RowTweet>
       <Row>

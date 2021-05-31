@@ -25,7 +25,7 @@ const PathLine: React.FC<Props> = ({
         preserveAspectRatio="none"
         style={{ transform: `rotate(${$rotate}deg)` }}
       >
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity={$opacity}>
+        <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" opacity={$opacity}>
           <path
             d="M707.885658,12.3777288 C953.163076,-36.3932686 1007.11799,76.2815564 953.163076,127.606731 C900.663076,177.547908 893.90829,30.6067314 1063.16308,46.8182608 C1232.41786,63.0297902 1404.07735,288.5498 1186.70414,744.5 C1073.88523,981.142788 909.856648,1081.22309 770.251895,1132.60967 C498.629416,1232.59014 487,1512.31133 681,1482"
             stroke={$color}
@@ -43,7 +43,7 @@ const PathLine: React.FC<Props> = ({
         preserveAspectRatio="none"
         style={{ transform: `rotate(${$rotate}deg)` }}
       >
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity={$opacity}>
+        <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" opacity={$opacity}>
           <path
             d="M703,52.6778987 C835.809863,-67.9879137 1037,28.5967475 1000,256.485922 C963,484.375097 598,816.966822 677.519762,1137.32874"
             stroke={$color}
@@ -61,7 +61,7 @@ const PathLine: React.FC<Props> = ({
         preserveAspectRatio="none"
         style={{ transform: `rotate(${$rotate}deg)` }}
       >
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity={$opacity}>
+        <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" opacity={$opacity}>
           <path
             d="M678.666502,-3.41060513e-13 C651.5,161.944012 849.123478,309.175716 790,511 C719.673713,751.066265 407.437047,927.96839 347.293346,877 C236.586692,783.182362 829.950403,674.763141 975.294508,847.88157 C1120.63861,1021 879.992818,1173.22473 836.308821,1173.22473 C792.624824,1173.22473 803.033269,1107 883.493107,1142 C963.952944,1177 971.45847,1414.07901 721.234512,1452.50502"
             stroke={$color}
