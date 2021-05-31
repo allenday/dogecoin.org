@@ -18,7 +18,7 @@ const SectionQRCode: React.FC = ({ publicKey }) => {
   ])
 
   useEffect(() => {
-    axios.get(`http://registry.proofof.dog/api/addr/${publicKey}`)
+    axios.get(`https://registry.proofof.dog/api/addr/${publicKey}`)
       .then(({ data }) => {
         if ( !data.error ) {
           setUserInfo(data)
