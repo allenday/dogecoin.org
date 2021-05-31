@@ -138,7 +138,9 @@ const SectionMain: React.FC = () => {
           <S.CardsContainerCol md={12} lg={8}>
             <S.CardsRow>
               <Col xs={12} md={6}>
-                {userInfo && (<PublicKeyTweet {...userInfo} />)}
+                <S.Div textCenter>
+                  {userInfo && (<PublicKeyTweet {...userInfo} />)}
+                </S.Div>
               </Col>
             </S.CardsRow>
           </S.CardsContainerCol>
