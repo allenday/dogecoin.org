@@ -40,7 +40,7 @@ const SectionQRCode: React.FC = ({ publicKey }) => {
           />
         </Row>
         <Row center="xs">
-          <S.TextRow>{userInfo.username}</S.TextRow>
+          <S.TextRow>{userInfo.dogname} belongs to {userInfo.username}</S.TextRow>
         </Row>
         {userInfo.tweetUrl && (
           <Row center="xs">
