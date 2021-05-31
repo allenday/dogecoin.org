@@ -45,7 +45,7 @@ export default {
   MEME_DOGEUS_ALT: "Догеус",
   MEME_DOGETO_ALT: "Догетo",
   GET_STARTED_TITLE: "Для начала",
-  GET_STARTED_SUBTITLE: "Очень просто приобрести вашему Доге Dogecoin",
+  GET_STARTED_SUBTITLE: "Очень просто приобрести вашему Доге Dogecoin и NFT",
   FOOTER_FOLLOW_US: "Подписывайтесь",
   FOOTER_OR: "или",
   BANNER_WOW: "much wow",

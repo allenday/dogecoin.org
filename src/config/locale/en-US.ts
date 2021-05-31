@@ -54,7 +54,7 @@ export default {
   WALLET_ALT_TITLE: "Public Key",
   WALLET_ALT_SUBTITLE: "Take your selfie with this one to KYD",
   GET_STARTED_TITLE: "Getting Started",
-  GET_STARTED_SUBTITLE: "It is very easy to give your doge Dogecoin",
+  GET_STARTED_SUBTITLE: "It is very easy to give your doge Dogecoin and NFTs",
   FOOTER_FOLLOW_US: "Follow us",
   FOOTER_OR: "or",
   INPUT_USERNAME: "your Twitter @username",

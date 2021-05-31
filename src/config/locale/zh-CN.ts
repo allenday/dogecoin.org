@@ -54,7 +54,7 @@ export default {
   WALLET_ALT_TITLE: "公钥",
   WALLET_ALT_SUBTITLE: "狗狗实名认证(KYD)公钥地址合照自拍",
   GET_STARTED_TITLE: "如何开始",
-  GET_STARTED_SUBTITLE: "你的狗狗轻松拥有狗狗币，如此简单",
+  GET_STARTED_SUBTITLE: "你的狗狗轻松拥有狗狗币和NFT，如此简单",
   FOOTER_FOLLOW_US: "关注我们",
   FOOTER_OR: "or",
   INPUT_USERNAME: "你的i Twitter @用户名",
