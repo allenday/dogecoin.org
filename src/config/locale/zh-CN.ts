@@ -72,7 +72,7 @@ export default {
   TAKE_PICTURE: "狗狗与二维码合照来一张",
   TWEET_LINK: "推文链接",
   TWEET_MESSAGE: "推文",
-  USER_CARD: "User card",
+  USER_CARD: "Pwoof of Doge",
   BANNER_WOW: "much wow",
   BANNER_RANDOM: "such random",
   TYPEWRITER_MUCH: "Much",
