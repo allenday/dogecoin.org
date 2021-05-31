@@ -70,7 +70,7 @@ export default {
   SECRET_KEY: "Secret key",
   SUBMIT: "Submit",
   TAKE_PICTURE: "Take a picture of this QR with your dog",
-  TWEET_LINK: "Tweet link",
+  TWEET_LINK: "Know-your-dog Tweet",
   TWEET_MESSAGE: "Tweet message",
   USER_CARD: "Pwoof of Doge",
   BANNER_WOW: "much wow",

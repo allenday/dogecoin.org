@@ -34,8 +34,8 @@ const SectionQRCode: React.FC = ({ publicKey }) => {
       <Section as={S.RadiusWrapper}>
         <Row center="xs">
           <QRCode            
-            info="PUBLIC_KEY"
-            title={userInfo.username}
+            info="SEND_DOGECOIN"
+            title={userInfo.dogname}
             value={userInfo.publicKey}
           />
         </Row>
