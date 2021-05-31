@@ -3,7 +3,7 @@ import { rem } from "polished"
 
 export const QRWrapper = styled.div`
   background-color: ${({ bgColor }) => bgColor};
-  height: 355px;
+  height: 365px;
   margin: 0 0 ${rem(20)};
   padding: 20px;
   width: fit-content;
@@ -24,7 +24,7 @@ export const QRTitle = styled.p`
   font-weight: bold;
   letter-spacing: 1px;
   margin: 0;
-  margin-top: -10px;
+  margin-top: 0px;
   text-align: center;
   width: 100%;
 `

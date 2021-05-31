@@ -24,7 +24,6 @@ const ComponentQRCode: React.FC = ({
           width: 90,
         }}
         level="H"
-        renderAs="svg"
         size={256}
         value={value}
       />
