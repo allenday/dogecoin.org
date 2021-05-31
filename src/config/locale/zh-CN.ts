@@ -57,7 +57,7 @@ export default {
   GET_STARTED_SUBTITLE: "你的狗狗轻松拥有狗狗币，如此简单",
   FOOTER_FOLLOW_US: "关注我们",
   FOOTER_OR: "or",
-  INPUT_USERNAME: "你的 @用户名",
+  INPUT_USERNAME: "你的i Twitter @用户名",
   INPUT_DOGNAME: "狗狗名字",
   DOG_TAG: "DogTag",
   DOWNLOAD: "下载",
