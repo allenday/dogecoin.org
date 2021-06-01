@@ -4,7 +4,7 @@ module.exports = {
   // assetPrefix: "https://dogecoinorg.github.io/dogecoin.org/",
   siteMetadata: {
     name: "proofof.dog",
-    title: "Finacial Freedom for Dogs #proofOfDog",
+    title: "Financial Freedom for Dogs #proofOfDog",
     description: `Social Justice and Financial Freedom for all Dogs Everywhere`,
   },
   plugins: [
