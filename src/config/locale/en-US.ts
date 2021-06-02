@@ -54,7 +54,7 @@ export default {
   WALLET_ALT_TITLE: "Public Key",
   WALLET_ALT_SUBTITLE: "Take your selfie with this one to KYD",
   GET_STARTED_TITLE: "Getting Started",
-  GET_STARTED_SUBTITLE: "It is very easy to give your doge Dogecoin",
+  GET_STARTED_SUBTITLE: "It is very easy to give your doge Dogecoin and NFTs",
   FOOTER_FOLLOW_US: "Follow us",
   FOOTER_OR: "or",
   INPUT_USERNAME: "your Twitter @username",
@@ -70,7 +70,7 @@ export default {
   SECRET_KEY: "Secret key",
   SUBMIT: "Submit",
   TAKE_PICTURE: "Take a picture of this QR with your dog",
-  TWEET_LINK: "Tweet link",
+  TWEET_LINK: "Know-your-dog Tweet",
   TWEET_MESSAGE: "Tweet message",
   USER_CARD: "Pwoof of Doge",
   BANNER_WOW: "much wow",
@@ -83,5 +83,6 @@ export default {
   TYPEWRITER_CRYPTO: "Crypto",
   TYPEWRITER_COIN: "Coin",
   TYPEWRITER_HODL: "HODL",
+  SEND_DOGECOIN: "Send dogecoin to:",
 
 }

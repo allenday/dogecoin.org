@@ -95,7 +95,7 @@ const SectionMain: React.FC = () => {
             <S.CardsRow>
               <Col xs={12}>
                 <S.Text center>
-                  <img src="/images/kyd-example.jpg" alt="KYD Example" />
+                  <img src="/images/kyd-example2.jpg" alt="KYD Example" />
                 </S.Text>
               </Col>
             </S.CardsRow>
@@ -135,10 +135,12 @@ const SectionMain: React.FC = () => {
 
         <BlockStepLead step={4} title={titleFour} />
         <Row center="xs">
-          <S.CardsContainerCol md={12} lg={8}>
+          <S.CardsContainerCol md={12}>
             <S.CardsRow>
-              <Col xs={12} md={6}>
-                {userInfo && (<PublicKeyTweet {...userInfo} />)}
+              <Col xs={12}>
+                <S.Div textCenter>
+                  {userInfo && (<PublicKeyTweet {...userInfo} />)}
+                </S.Div>
               </Col>
             </S.CardsRow>
           </S.CardsContainerCol>

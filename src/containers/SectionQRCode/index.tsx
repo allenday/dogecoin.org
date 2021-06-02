@@ -18,7 +18,7 @@ const SectionQRCode: React.FC = ({ publicKey }) => {
   ])
 
   useEffect(() => {
-    axios.get(`http://registry.proofof.dog/api/addr/${publicKey}`)
+    axios.get(`https://registry.proofof.dog/api/addr/${publicKey}`)
       .then(({ data }) => {
         if ( !data.error ) {
           setUserInfo(data)
@@ -34,13 +34,13 @@ const SectionQRCode: React.FC = ({ publicKey }) => {
       <Section as={S.RadiusWrapper}>
         <Row center="xs">
           <QRCode            
-            info="PUBLIC_KEY"
-            title={userInfo.username}
+            info="SEND_DOGECOIN"
+            title={userInfo.dogname}
             value={userInfo.publicKey}
           />
         </Row>
         <Row center="xs">
-          <S.TextRow>{userInfo.username}</S.TextRow>
+          <S.TextRow>{userInfo.dogname} belongs to @{userInfo.username}</S.TextRow>
         </Row>
         {userInfo.tweetUrl && (
           <Row center="xs">
