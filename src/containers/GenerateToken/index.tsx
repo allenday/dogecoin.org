@@ -5,6 +5,8 @@ import UserInfo from "./UserInfo"
 
 import * as S from "./styled"
 
+const twitterFormat = (str) => str.toLowerCase().replace('@', '')
+
 const GenerateToken: React.FC = ({
   onGenerated = () => {},
 }) => {
@@ -14,13 +16,12 @@ const GenerateToken: React.FC = ({
     const key = new window.Bitcoin.ECKey(false)
     const publicKey = key.getBitcoinAddress()
     const secretKey = key.getBitcoinWalletImportFormat()
-    const message = window.signMessage(twitter, secretKey)
+    const message = window.signMessage(twitterFormat(twitter), secretKey)
     const info = {
       dogname,
       message,
       publicKey,
       secretKey,
-      twitter,
     }
 
     setUserInfo(info)

@@ -9,10 +9,8 @@ import * as S from "./styled"
 
 const UserInfo: React.FC = ({
   dogname,
-  message,
   publicKey,
   secretKey,
-  twitter,
 }) => {
   const pbKeyRef = useRef()
   const scKeyRef = useRef()
