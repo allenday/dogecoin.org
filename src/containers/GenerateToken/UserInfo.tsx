@@ -11,10 +11,11 @@ const UserInfo: React.FC = ({
   dogname,
   publicKey,
   secretKey,
+  twitter,
 }) => {
   const pbKeyRef = useRef()
   const scKeyRef = useRef()
-  const publicKeyUrl = `https://proofof.dog/addr?dogname=${dogname}&dogecoin=${publicKey}`
+  const publicKeyUrl = `https://proofof.dog/addr?dogecoin=${publicKey}&twitter=${twitter}&dogname=${dogname}`
   const [
     saveText,
     downloadText,

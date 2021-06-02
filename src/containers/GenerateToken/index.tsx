@@ -13,15 +13,17 @@ const GenerateToken: React.FC = ({
   const [userInfo, setUserInfo] = useState(null)
 
   const handleSubmit = ({ dogname, twitter }) => {
+    const twitterFormated = twitterFormat(twitter)
     const key = new window.Bitcoin.ECKey(false)
     const publicKey = key.getBitcoinAddress()
     const secretKey = key.getBitcoinWalletImportFormat()
-    const message = window.signMessage(twitterFormat(twitter), secretKey)
+    const message = window.signMessage(twitterFormated, secretKey)
     const info = {
       dogname,
       message,
       publicKey,
       secretKey,
+      twitter: twitterFormated,
     }
 
     setUserInfo(info)
