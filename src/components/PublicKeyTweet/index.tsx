@@ -10,8 +10,10 @@ const PublicKeyTweet: React.FC = ({
   message,
   publicKey,
 }) => {
-  const publicKeyUrl = `https://proofof.dog/addr?dogname=${dogname}&dogecoin=${publicKey}`
-  const tweetMessage = `.@proofofdog Here's a #KYD for ${dogname}\n\n${message}\n\n#proofofdog @elonmusk $DOGE`
+  const publicKeyUrl = `https://proofof.dog/addr?dogecoin=${publicKey}`
+  const tweetBaseUrl = `https://twitter.com/intent/tweet?tw_p=tweetbutton&ref_src=twsrc%5Etfw&text=`
+  const tweetMessage = tweetBaseUrl + `.%40proofofdog+Here's+a+%23KYD+for+` + dogname + `%0a%0a` + encodeURIComponent(message) + `%0a%0a%23proofofdog+%40elonmusk+%24DOGE`;
+//  const tweetMessage = `https://twitter.com/intent/tweet?tw_p=tweetbutton&ref_src=twsrc%5Etfw&text=.@proofofdog Here's a #KYD for ${dogname}\n\n${message}\n\n#proofofdog @elonmusk $DOGE`;
   const [
     rememberAttachText,
     tweetMessageText,
@@ -22,17 +24,19 @@ const PublicKeyTweet: React.FC = ({
 
   return (
     <>
-      <Row>
-        <S.TextRow bold color="#00a000" mTop={5}>{rememberAttachText}</S.TextRow>
+      <Row center="xs">
+        <S.Div textCenter>
+          <S.TextRow bold color="#00a000" mTop={5}>{rememberAttachText}</S.TextRow>
+        </S.Div>
       </Row>
-      <S.RowTweet>
-        <TwitterShareButton
-          url={' '}
-          options={{ text: tweetMessage, size: 'large' }}
-        />
-      </S.RowTweet>
+      <Row center="xs">
+        <S.Div textCenter>
+          <a target="_blank" href={tweetMessage}><img src="/images/tweet.png" width="320"/></a>
+        </S.Div>
+      </Row>
     </>
   )
 }
 
 export default PublicKeyTweet
+

@@ -72,12 +72,6 @@ const UserInfo: React.FC = ({
           <S.TextRow bold color="#DD0000" mTop={5}>{saveSecretText}</S.TextRow>
         </S.StepCol>
       </S.ShapesRow>
-      <Row>
-        <S.TextRow fontSize={18} fontStyle="italic">{`${publicKeyText}: ${publicKey}`}</S.TextRow>
-      </Row>
-      <Row>
-        <S.TextRow fontSize={18} fontStyle="italic">{`${secretKeyText}: ${secretKey}`}</S.TextRow>
-      </Row>
     </>
   )
 }
