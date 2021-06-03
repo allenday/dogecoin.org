@@ -51,8 +51,9 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
             <S.WebcamWrapper>
               <Webcam
                 audio={false}
-                screenshotFormat="image/jpeg"
+                height={525}
                 ref={webcamRef}
+                screenshotFormat="image/jpeg"
                 videoConstraints={videoConstraints}
               />
               {proofOfDog && (<S.ProofOfDog alt="Proof of Doge" src={proofOfDog} />)}
