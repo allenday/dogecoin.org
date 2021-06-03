@@ -30,6 +30,11 @@ export const Wrapper = styled.div`
     }
   }
 `
+
+export const PhotoWrapper = styled(Wrapper)`
+  min-height: 600px;
+`
+
 export const RadiusWrapper = styled(Wrapper)`
   padding-top: ${rem(170)};
   border-radius: ${rem(63)} ${rem(63)} 0 0;
@@ -156,6 +161,11 @@ export const DecorWrapper = styled(Decor)`
   top: 4.5%;
   width: 100%;
   height: calc(100% + 2.5rem + 4.5%);
+
+  @media all and (max-width: ${(props) => `${props.theme.flexboxgrid.breakpoints.sm}em`}) {
+    position: relative;
+    margin-bottom: 30px;
+  }
 
   @media all and (max-width: ${(props) => `${props.theme.flexboxgrid.breakpoints.md}em`}) {
     width: calc(100% + ${rem(80)});
