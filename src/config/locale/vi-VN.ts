@@ -72,7 +72,7 @@ export default {
   TAKE_PICTURE: "Take a picture of this QR with your dog",
   TWEET_LINK: "Know-your-dog Tweet",
   TWEET_MESSAGE: "Tweet message",
-  USER_CARD: "Pwoof of Doge",
+  PROOF_OF_DOGE: "Proof of Doge",
   BANNER_WOW: "much wow",
   BANNER_RANDOM: "such random",
   TYPEWRITER_MUCH: "Much",
