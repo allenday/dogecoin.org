@@ -61,9 +61,12 @@ const Layout: React.FC<Props> = ({ title, description, isSecondaryHeader = false
 
         <meta name="theme-color" content="#00665e" />
         <meta name="description" content={description ?? defaultDescription} />
+        <meta property='og:description' content={description ?? defaultDescription} />
         <meta property="og:image" content={withPrefix("/images/website-preview.png")} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+        <meta property='og:title' content={title ?? defaultTitle} />
+        <meta property='og:url' content="//proofof.dog" />
 
         <link rel="manifest" href={withPrefix("/favicon/site.webmanifest")} />
 

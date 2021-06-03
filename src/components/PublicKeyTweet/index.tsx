@@ -26,7 +26,7 @@ const PublicKeyTweet: React.FC = ({
     <>
       <Row center="xs">
         <S.Div textCenter>
-          <S.TextRow bold color="#00a000" mTop={5}>{rememberAttachText}</S.TextRow>
+          <S.TextRow bold color="#00a000" mTop={60}>{rememberAttachText}</S.TextRow>
         </S.Div>
       </Row>
       <Row center="xs">
@@ -39,4 +39,3 @@ const PublicKeyTweet: React.FC = ({
 }
 
 export default PublicKeyTweet
-

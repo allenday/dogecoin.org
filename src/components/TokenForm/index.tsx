@@ -21,8 +21,8 @@ const TokenForm: React.FC = ({ onSubmit }) => {
     { id: "RESET" },
   ])
 
-  const handleInput = ({ target: { name, value } }) => {
-    setValues({ ...values, [name]: value })
+  const handleDogname = ({ target: { value }}) => {
+    setValues({ ...values, dogname: value.slice(0, 64) })
   }
 
   const handleKeyDown = (event) => event.keyCode === 32 && event.preventDefault()
@@ -30,6 +30,8 @@ const TokenForm: React.FC = ({ onSubmit }) => {
   const handleReset = () => setValues({ twitter: '', dogname: '' })
 
   const handleSubmit = () => onSubmit(values)
+
+  const handleTwitter = ({ target: { value }}) => setValues({ ...values, twitter: value })
 
   useEffect(() => {
     const dogname = localStorage.getItem('dogname')
@@ -50,7 +52,7 @@ const TokenForm: React.FC = ({ onSubmit }) => {
         <S.StepCol xs={12} sm={6}>
           <S.InputText
             name="twitter"
-            onChange={handleInput}
+            onChange={handleTwitter}
             onKeyDown={handleKeyDown}
             placeholder={inputUsernameText}
             value={values.twitter}
@@ -59,7 +61,7 @@ const TokenForm: React.FC = ({ onSubmit }) => {
         <S.StepCol xs={12} sm={6}>
           <S.InputText
             name="dogname"
-            onChange={handleInput}
+            onChange={handleDogname}
             onKeyDown={handleKeyDown}
             placeholder={inputDognameText}
             value={values.dogname}

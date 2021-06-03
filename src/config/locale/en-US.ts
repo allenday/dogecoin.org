@@ -32,6 +32,7 @@ export default {
 
   GUIDE_CTA_TEXT: "Getting Started Guide",
   GETTING_STARTED_TITLE: "Getting Started",
+  MAKE_PHOTO: "Make a photo",
   MEME_DIP_ALT: "DIP-1337",
   MEME_LIONKING_ALT: "Elon Dogeba ",
   MEME_MAVS_ALT: "Dallas Dogericks ",
@@ -72,7 +73,7 @@ export default {
   TAKE_PICTURE: "Take a picture of this QR with your dog",
   TWEET_LINK: "Know-your-dog Tweet",
   TWEET_MESSAGE: "Tweet message",
-  USER_CARD: "Pwoof of Doge",
+  PROOF_OF_DOGE: "Proof of Doge",
   BANNER_WOW: "much wow",
   BANNER_RANDOM: "such random",
   TYPEWRITER_MUCH: "Much",
@@ -84,5 +85,5 @@ export default {
   TYPEWRITER_COIN: "Coin",
   TYPEWRITER_HODL: "HODL",
   SEND_DOGECOIN: "Send dogecoin to:",
-
+  USE_CAMERA: "Use Camera"
 }

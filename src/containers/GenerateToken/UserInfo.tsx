@@ -1,4 +1,5 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
+import html2canvas from "html2canvas"
 import { Row } from "react-styled-flexboxgrid"
 import { useFormatMessages } from "../../utils/hooks"
 
@@ -7,16 +8,14 @@ import QRCode from "../../components/QRCode"
 
 import * as S from "./styled"
 
-const UserInfo: React.FC = ({
-  dogname,
-  message,
-  publicKey,
-  secretKey,
-  twitter,
-}) => {
-  const pbKeyRef = useRef()
-  const scKeyRef = useRef()
-  const publicKeyUrl = `https://proofof.dog/addr?dogecoin=${publicKey}`
+const UserInfo: React.FC = ({ onGenerated, userInfo }) => {
+  const { dogname, publicKey, secretKey, twitter } = userInfo
+  const refsQR = {
+    proofOfDog: useRef(),
+    secretKey: useRef(),
+  }
+  const refDownload = useRef()
+  const publicKeyUrl = `https://proofof.dog/addr?dogecoin=${publicKey}&twitter=${twitter}&dogname=${dogname}`
   const [
     saveText,
     downloadText,
@@ -33,31 +32,49 @@ const UserInfo: React.FC = ({
     { id: "SECRET_KEY" },
   ])
 
-  const handleDownload = (ref, fileName) => async () => {
-    const expLib = await require('react-component-export-image')
-    expLib.exportComponentAsJPEG(ref, { fileName })
+  const handleDownload = (key) => async () => {
+    refDownload.current.setAttribute('download', key)
+    refDownload.current.href = await getSrcQR(key)
+    refDownload.current.click()
   }
+
+  const getSrcQR = async (key, scale = 2) => {
+    const canvas = await html2canvas(refsQR[key].current, {
+      scrollY: -window.scrollY,
+      useCORS: true,
+      scale,
+    })
+
+    return canvas.toDataURL('image/jpeg', 1.0)
+  }
+
+  useEffect(() => {
+    onGenerated({
+      ...userInfo,
+      proofOfDogQR: () => getSrcQR('proofOfDog', 0.5),
+    })
+  }, [dogname, publicKey, secretKey, twitter])
 
   return (
     <>
       <S.ShapesRow center="xs">
         <S.StepCol xs={12} sm={6}>
-          <S.QRWrapper ref={pbKeyRef}>
+          <S.QRWrapper ref={refsQR.proofOfDog}>
             <QRCode
-              info="USER_CARD"
+              info="PROOF_OF_DOGE"
               title={dogname}
               value={publicKeyUrl}
             />
           </S.QRWrapper>
           <Button
             backgroundColor="primary"
-            onClick={handleDownload(pbKeyRef, 'UserCard')}
+            onClick={handleDownload('proofOfDog')}
             text={saveText}
           />
           <S.TextRow bold color="#00a000" mTop={5}>{takePictureText}</S.TextRow>
         </S.StepCol>
         <S.StepCol xs={12} sm={6}>
-          <S.QRWrapper ref={scKeyRef}>
+          <S.QRWrapper ref={refsQR.secretKey}>
             <QRCode
               color="crimson"
               info="SECRET_KEY"
@@ -67,12 +84,19 @@ const UserInfo: React.FC = ({
           </S.QRWrapper>
           <Button
             backgroundColor="primary"
-            onClick={handleDownload(scKeyRef, 'SecretKey')}
+            onClick={handleDownload('secretKey')}
             text={saveText}
           />
           <S.TextRow bold color="#DD0000" mTop={5}>{saveSecretText}</S.TextRow>
         </S.StepCol>
       </S.ShapesRow>
+      <Row>
+        <S.TextRow fontSize={18} fontStyle="italic">{`${publicKeyText}: ${publicKey}`}</S.TextRow>
+      </Row>
+      <Row>
+        <S.TextRow fontSize={18} fontStyle="italic">{`${secretKeyText}: ${secretKey}`}</S.TextRow>
+      </Row>
+      <a download ref={refDownload} />
     </>
   )
 }

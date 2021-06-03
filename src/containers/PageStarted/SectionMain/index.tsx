@@ -1,14 +1,14 @@
 import React, { useState } from "react"
 import { useMediaQuery } from "react-responsive"
 import { Row, Col } from "react-styled-flexboxgrid"
-import { StaticImage } from "gatsby-plugin-image"
 import { TwitterFollowButton } from 'react-twitter-embed';
 
 import { useFormatMessages } from "../../../utils/hooks"
 
-import PublicKeyTweet from "../../../components/PublicKeyTweet"
 import GenerateToken from "../../GenerateToken"
+import MakePhoto from "../MakePhoto"
 import PathLine from "../../../assets/shapes/path-line"
+import PublicKeyTweet from "../../../components/PublicKeyTweet"
 import Section from "../../../components/Section"
 import CardBoxLink from "../../../components/CardBoxLink"
 import CardSocial from "../../../components/CardSocial/index"
@@ -43,7 +43,7 @@ const TabsGroup: React.FC<TabsGroupProps> = ({ groups }) => {
 }
 
 const SectionMain: React.FC = () => {
-  const [userInfo, setUserInfo] = useState(null)
+  const [userInfo, setUserInfo] = useState({})
   const isMobile = useMediaQuery({ maxWidth: 767 })
 
   const [
@@ -82,7 +82,7 @@ const SectionMain: React.FC = () => {
         <GenerateToken onGenerated={setUserInfo} />
       </Section>
 
-      <Section as={S.Wrapper}>
+      <Section as={S.PhotoWrapper}>
         {!isMobile && (
           <S.DecorWrapper>
             <PathLine $type={3} />
@@ -94,9 +94,7 @@ const SectionMain: React.FC = () => {
           <S.CardsContainerCol md={12}>
             <S.CardsRow>
               <Col xs={12}>
-                <S.Text center>
-                  <img src="/images/kyd-example2.jpg" alt="KYD Example" />
-                </S.Text>
+                <MakePhoto getProofOfDogQR={userInfo.proofOfDogQR} />
               </Col>
             </S.CardsRow>
           </S.CardsContainerCol>
