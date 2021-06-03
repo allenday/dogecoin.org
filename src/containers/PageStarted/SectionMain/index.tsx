@@ -113,10 +113,7 @@ const SectionMain: React.FC = () => {
             <S.CardsRow>
               <Col xs={12}>
                 <S.Div textCenter>
-                  <TwitterFollowButton
-                    screenName={'proofOfDog'}
-                    options={{ size: 'large', showCount: false }}
-                  />
+                  <a target="_blank" href="https://twitter.com/intent/follow?region=follow_link&screen_name=proofOfDog&tw_p=followbutton"><img src="/images/follow.png" width="320"/></a>
                 </S.Div>
               </Col>
             </S.CardsRow>

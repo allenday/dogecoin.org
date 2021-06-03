@@ -24,3 +24,11 @@ export const RowTweetMessage = styled(Row)`
     margin: 5px 0;
   }
 `
+
+export const Text = styled.p`
+  ${({ center }) => center && `text-align: center;`}
+`
+
+export const Div = styled.div`
+  ${({ textCenter }) => textCenter && `text-align: center;`}
+`
