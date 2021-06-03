@@ -27,13 +27,12 @@ const GenerateToken: React.FC = ({
     }
 
     setUserInfo(info)
-    onGenerated(info)
   }
 
   return (
     <>
       <TokenForm onSubmit={handleSubmit} />
-      {userInfo && (<UserInfo {...userInfo} />)}
+      {userInfo && (<UserInfo onGenerated={onGenerated} userInfo={userInfo} />)}
     </>
   )
 }
