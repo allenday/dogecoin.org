@@ -82,7 +82,7 @@ const SectionMain: React.FC = () => {
         <GenerateToken onGenerated={setUserInfo} />
       </Section>
 
-      <Section as={S.Wrapper}>
+      <Section as={S.PhotoWrapper}>
         {!isMobile && (
           <S.DecorWrapper>
             <PathLine $type={3} />

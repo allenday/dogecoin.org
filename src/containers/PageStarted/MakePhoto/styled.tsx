@@ -22,5 +22,5 @@ export const WebcamWrapper = styled.div`
 `
 
 export const Wrapper = styled.div`
-  min-height: 600px;
+  min-height: 700px;
 `
