@@ -41,7 +41,6 @@
     "gatsby-plugin-styled-components": "^4.2.0",
     "gatsby-source-filesystem": "^3.2.0",
     "gatsby-transformer-sharp": "^3.2.0",
-    "html2canvas": "^1.0.0-rc.7",
     "merge-images": "^2.0.0",
     "polished": "^4.1.1",
     "qrcode.react": "^1.0.1",

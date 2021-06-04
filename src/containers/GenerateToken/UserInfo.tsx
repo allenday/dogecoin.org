@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react"
-import html2canvas from "html2canvas"
 import { Row } from "react-styled-flexboxgrid"
 import { useFormatMessages } from "../../utils/hooks"
 
