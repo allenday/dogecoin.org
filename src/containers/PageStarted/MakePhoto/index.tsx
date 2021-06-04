@@ -31,7 +31,7 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
   const makePhoto = () => {
     const imageSrc = webcamRef.current.getScreenshot()
 
-    mergeImages([ imageSrc, { src: proofOfDog, x: 0, y: 0 } ])
+    mergeImages([ imageSrc, proofOfDog ])
       .then(b64 => {
         refDownload.current.href = b64
         refDownload.current.click()
@@ -39,7 +39,16 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
   }
 
   useEffect(() => {
-    if ( getProofOfDogQR ) getProofOfDogQR().then(src => setProofOfDog(src))
+    if ( getProofOfDogQR ) {
+      const resizedCanvas = document.createElement('canvas')
+      const resizedContext = resizedCanvas.getContext('2d')
+
+      resizedCanvas.height = 150
+      resizedCanvas.width = 150
+      resizedContext.drawImage(getProofOfDogQR(), 0, 0, 150, 150)
+
+      setProofOfDog(resizedCanvas.toDataURL())
+    }
   })
 
   return (
