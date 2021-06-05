@@ -71,14 +71,16 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
         }
       </S.Container>
 
-      <S.ButtonWrapper>
-        {!camera && (
-          <Button backgroundColor="primary" onClick={enableCamera} text={useCameraText} />
-        )}
-        {!!camera && (
-          <Button backgroundColor="primary" onClick={makePhoto} text={makePhotoText} />
-        )}
-      </S.ButtonWrapper>
+      {getProofOfDogQR && (
+        <S.ButtonWrapper>
+          {!camera && (
+            <Button backgroundColor="primary" onClick={enableCamera} text={useCameraText} />
+          )}
+          {!!camera && (
+            <Button backgroundColor="primary" onClick={makePhoto} text={makePhotoText} />
+          )}
+        </S.ButtonWrapper>
+      )}
 
       <a download="proofofdog-photo.jpeg" ref={refDownload} />
     </S.Wrapper>
