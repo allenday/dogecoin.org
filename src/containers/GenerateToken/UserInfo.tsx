@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react"
-import html2canvas from "html2canvas"
 import { Row } from "react-styled-flexboxgrid"
 import { useFormatMessages } from "../../utils/hooks"
 
@@ -32,26 +31,24 @@ const UserInfo: React.FC = ({ onGenerated, userInfo }) => {
     { id: "SECRET_KEY" },
   ])
 
+  const getCanvasQR = (key) => {
+    return refsQR[key].current.querySelector('canvas')
+  }
+
+  const getSrcQR = async (key, scale = 2) => {
+    return getCanvasQR(key).toDataURL('image/jpeg', 1.0)
+  }
+
   const handleDownload = (key) => async () => {
     refDownload.current.setAttribute('download', key)
     refDownload.current.href = await getSrcQR(key)
     refDownload.current.click()
   }
 
-  const getSrcQR = async (key, scale = 2) => {
-    const canvas = await html2canvas(refsQR[key].current, {
-      scrollY: -window.scrollY,
-      useCORS: true,
-      scale,
-    })
-
-    return canvas.toDataURL('image/jpeg', 1.0)
-  }
-
   useEffect(() => {
     onGenerated({
       ...userInfo,
-      proofOfDogQR: () => getSrcQR('proofOfDog', 0.5),
+      proofOfDogQR: () => getCanvasQR('proofOfDog'),
     })
   }, [dogname, publicKey, secretKey, twitter])
 
