@@ -1,6 +1,5 @@
 import React from "react"
 import { Row } from "react-styled-flexboxgrid"
-import { TwitterShareButton } from 'react-twitter-embed';
 import { useFormatMessages } from "../../utils/hooks"
 
 import * as S from "./styled"
@@ -8,19 +7,10 @@ import * as S from "./styled"
 const PublicKeyTweet: React.FC = ({
   dogname,
   message,
-  publicKey,
 }) => {
-  const publicKeyUrl = `https://proofof.dog/addr?dogecoin=${publicKey}`
   const tweetBaseUrl = `https://twitter.com/intent/tweet?tw_p=tweetbutton&ref_src=twsrc%5Etfw&text=`
-  const tweetMessage = tweetBaseUrl + `.%40proofofdog+Here's+a+%23KYD+for+` + dogname + `%0a%0a` + encodeURIComponent(message) + `%0a%0a%23proofofdog+%40elonmusk+%24DOGE`;
-//  const tweetMessage = `https://twitter.com/intent/tweet?tw_p=tweetbutton&ref_src=twsrc%5Etfw&text=.@proofofdog Here's a #KYD for ${dogname}\n\n${message}\n\n#proofofdog @elonmusk $DOGE`;
-  const [
-    rememberAttachText,
-    tweetMessageText,
-  ] = useFormatMessages([
-    { id: "REMEMBER_ATTACH_PIC" },
-    { id: "TWEET_MESSAGE" },
-  ])
+  const tweetMessage = `${tweetBaseUrl}.%40proofofdog+Here's+a+%23KYD+for+${dogname}%0a%0a${encodeURIComponent(message)}%0a%0a%23proofofdog+%40elonmusk+%24DOGE`
+  const [rememberAttachText] = useFormatMessages([{ id: "REMEMBER_ATTACH_PIC" }])
 
   return (
     <>
@@ -31,7 +21,9 @@ const PublicKeyTweet: React.FC = ({
       </Row>
       <Row center="xs">
         <S.Div textCenter>
-          <a target="_blank" href={tweetMessage}><img src="/images/tweet.png" width="320"/></a>
+          {dogname && (
+            <a target="_blank" href={tweetMessage}><img src="/images/tweet.png" width="320"/></a>
+          )}
         </S.Div>
       </Row>
     </>
