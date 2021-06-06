@@ -12,7 +12,8 @@ import * as S from "./styled"
 const videoConstraints = { facingMode: 'environment' };
 
 const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
-  const refDownload = useRef(null);
+  const containerRef = useRef(null)
+  const downloadRef = useRef(null)
   const exampleRef = useRef(null)
   const webcamRef = useRef(null)
   const [camera, setCamera] = useState(false)
@@ -29,12 +30,16 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
   const enableCamera = () => setCamera(true)
 
   const makePhoto = () => {
-    const imageSrc = webcamRef.current.getScreenshot()
+    const video = containerRef.current.querySelector('video')
 
-    mergeImages([ imageSrc, proofOfDog ])
+    mergeImages([ webcamRef.current.getScreenshot(), {
+      src: proofOfDog,
+      x: video.clientWidth - 80,
+      y: video.clientHeight - 100,
+    }])
       .then(b64 => {
-        refDownload.current.href = b64
-        refDownload.current.click()
+        downloadRef.current.href = b64
+        downloadRef.current.click()
       })
   }
 
@@ -43,9 +48,9 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
       const resizedCanvas = document.createElement('canvas')
       const resizedContext = resizedCanvas.getContext('2d')
 
-      resizedCanvas.height = 150
-      resizedCanvas.width = 150
-      resizedContext.drawImage(getProofOfDogQR(), 0, 0, 150, 150)
+      resizedCanvas.height = 100
+      resizedCanvas.width = 80
+      resizedContext.drawImage(getProofOfDogQR(), 0, 0, 80, 100)
 
       setProofOfDog(resizedCanvas.toDataURL())
     }
@@ -53,7 +58,7 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
 
   return (
     <S.Wrapper>
-      <S.Container>
+      <S.Container ref={containerRef}>
         {!camera
           ? (<img alt="KYD Example" ref={exampleRef} src="/images/kyd-example2.jpg" />)
           : (
@@ -65,7 +70,9 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
                 screenshotFormat="image/jpeg"
                 videoConstraints={videoConstraints}
               />
-              {proofOfDog && (<S.ProofOfDog alt="Proof of Doge" src={proofOfDog} />)}
+              {proofOfDog && (
+                <S.ProofOfDog alt="Proof of Doge" src={proofOfDog} top={425} />
+              )}
             </S.WebcamWrapper>
           )
         }
@@ -82,7 +89,7 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
         </S.ButtonWrapper>
       )}
 
-      <a download="proofofdog-photo.jpeg" ref={refDownload} />
+      <a download="proofofdog-photo.jpeg" ref={downloadRef} />
     </S.Wrapper>
   )
 }

@@ -12,9 +12,9 @@ export const Container = styled.div`
 `
 
 export const ProofOfDog = styled.img`
-  left: 0px;
   position: absolute;
-  top: 0px;
+  right: 0px;
+  top: ${({ top }) => top}px;
 `
 
 export const WebcamWrapper = styled.div`
