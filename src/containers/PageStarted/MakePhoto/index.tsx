@@ -3,6 +3,9 @@ import { useFormatMessages } from "../../../utils/hooks"
 
 import Button from "../../../components/Button"
 
+// With high load, we must use external button component to update button state
+import MakePhotoButton from "./MakePhotoBtn"
+
 import * as S from "./styled"
 
 const videoConstraints = {
@@ -15,12 +18,13 @@ const videoConstraints = {
 }
 
 const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
+  const [useCameraText] = useFormatMessages([{ id: "USE_CAMERA" }])
+  const refButton = useRef(null)
   const refDownload = useRef(null)
   const refVideo = useRef(null)
   const refWrapper = useRef(null)
   const [state, setState] = useState({
     cameraEnabled: false,
-    loading: false,
     proofOfDog: null,
     sizes: {
       videoHeight: null,
@@ -29,15 +33,7 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
       windowWidth: null,
     }
   })
-  const { cameraEnabled, loading, proofOfDog, sizes } = state
-
-  const [
-    makePhotoText,
-    useCameraText,
-  ] = useFormatMessages([
-    { id: "MAKE_PHOTO" },
-    { id: "USE_CAMERA" },
-  ])
+  const { cameraEnabled, proofOfDog, sizes } = state
 
   const handleEnableCamera = () => {
     const canvas = getProofOfDogQR()
@@ -55,7 +51,6 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
 
         setState({
           cameraEnabled: true,
-          loading,
           proofOfDog: {
             canvas,
             resized: resizedCanvas.toDataURL('image/jpeg', 1.0),
@@ -75,7 +70,6 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
   const handleLoadedData = () => {
     setState({
       cameraEnabled,
-      loading,
       proofOfDog,
       sizes: {
         ...sizes,
@@ -85,8 +79,6 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
   }
 
   const handleMakePhoto = () => {
-    setState({ ...state, loading: true })
-
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
 
@@ -103,7 +95,7 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
     refDownload.current.click()
 
     // We can't catch event when file is loaded, so read the file and then disable loading
-    canvas.toBlob(() => setState({ ...state, loading: false }))
+    canvas.toBlob(() => refButton.current.setEnabled())
   }
 
   return (
@@ -133,15 +125,10 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
       {getProofOfDogQR && (
         <S.ButtonWrapper>
           {!cameraEnabled && (
-            <Button backgroundColor="primary" onClick={handleEnableCamera} text="Use Camera" />
+            <Button backgroundColor="primary" onClick={handleEnableCamera} text={useCameraText} />
           )}
           {cameraEnabled && (
-            <Button
-              backgroundColor="primary"
-              loading={loading}
-              onClick={handleMakePhoto}
-              text="Make Photo"
-            />
+            <MakePhotoButton forwardRed={refButton} onClick={handleMakePhoto} />
           )}
         </S.ButtonWrapper>
       )}
