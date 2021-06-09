@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import Spinner from "./../Spinner"
 
 import * as S from "./styled"
 
@@ -13,6 +14,7 @@ interface ButtonProps {
   textFirst?: boolean
   backgroundColor?: S.BgColor
   layout?: S.Layout
+  loading?: boolean
   href?: string | null
   gatsbyLink?: boolean
   fullWidth?: boolean
@@ -30,6 +32,7 @@ const Button: React.FC<ButtonProps> = ({
   backgroundColor = "transparent",
   bordered = false,
   layout = "initial",
+  loading = false,
   href = null,
   gatsbyLink = false,
   fullWidth = false,
@@ -64,6 +67,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <S.Main
+      disabled={loading}
       textColor={textColor}
       backgroundColor={backgroundColor}
       layout={layout}
@@ -85,6 +89,7 @@ const Button: React.FC<ButtonProps> = ({
     >
       {icon}
       {text && <span>{text}</span>}
+      {loading && <Spinner marginLeft={20} />}
     </S.Main>
   )
 }

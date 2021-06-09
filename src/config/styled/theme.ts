@@ -36,6 +36,7 @@ const theme = {
   },
   colors: {
     primary: "#00665e",
+    primaryActive: "#00988c",
     secondary: "#ffd203",
     background: "#F5F0ED",
     dark: "#222533",

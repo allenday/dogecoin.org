@@ -6,21 +6,22 @@ export const ButtonWrapper = styled.div`
   margin-top: 30px;
 `
 
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
+export const ExampleWrapper = styled.div`
+  text-align: center;
 `
 
 export const ProofOfDog = styled.img`
-  left: 0px;
   position: absolute;
-  top: 0px;
+  right: 0px;
+  top: ${({ top }) => top}px;
 `
 
-export const WebcamWrapper = styled.div`
+export const VideoWrapper = styled.div`
+  width:  ${({ width }) => width || 0}px;
+  margin: 0 auto;
   position: relative;
-`
 
-export const Wrapper = styled.div`
-  min-height: 700px;
+  & video {
+    width: ${({ width }) => width}px;
+  }
 `

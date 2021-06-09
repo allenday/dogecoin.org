@@ -1,22 +1,35 @@
-import React, { useEffect, useRef, useState } from "react"
-import Webcam from 'react-webcam';
-import mergeImages from 'merge-images';
-import { useMediaQuery } from "react-responsive"
-
+import React, { useRef, useState } from "react"
 import { useFormatMessages } from "../../../utils/hooks"
 
 import Button from "../../../components/Button"
 
 import * as S from "./styled"
 
-const videoConstraints = { facingMode: 'environment' };
+const videoConstraints = {
+  audio: false,
+  video: {
+    facingMode: 'environment',
+    height: { ideal: 2024 },
+    width: { ideal: 2024 },
+  },
+}
 
 const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
-  const refDownload = useRef(null);
-  const exampleRef = useRef(null)
-  const webcamRef = useRef(null)
-  const [camera, setCamera] = useState(false)
-  const [proofOfDog, setProofOfDog] = useState(null)
+  const refDownload = useRef(null)
+  const refVideo = useRef(null)
+  const refWrapper = useRef(null)
+  const [loading, setLoading] = useState(false)
+  const [state, setState] = useState({
+    cameraEnabled: false,
+    proofOfDog: null,
+    sizes: {
+      videoHeight: null,
+      videoWidth: null,
+      windowHeight: null,
+      windowWidth: null,
+    }
+  })
+  const { cameraEnabled, proofOfDog, sizes } = state
 
   const [
     makePhotoText,
@@ -26,64 +39,115 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
     { id: "USE_CAMERA" },
   ])
 
-  const enableCamera = () => setCamera(true)
+  const handleEnableCamera = () => {
+    const canvas = getProofOfDogQR()
+    const resizedCanvas = document.createElement('canvas')
+    const resizedContext = resizedCanvas.getContext('2d')
+    const windowWidth = window.innerWidth
 
-  const makePhoto = () => {
-    const imageSrc = webcamRef.current.getScreenshot()
+    resizedCanvas.height = 75
+    resizedCanvas.width = 61
+    resizedContext.drawImage(canvas, 0, 0, 61, 75)
 
-    mergeImages([ imageSrc, proofOfDog ])
-      .then(b64 => {
-        refDownload.current.href = b64
-        refDownload.current.click()
+    navigator.mediaDevices.getUserMedia(videoConstraints)
+      .then(stream => {
+        const { height, width } = stream.getVideoTracks()[0].getSettings()
+
+        setState({
+          cameraEnabled: true,
+          proofOfDog: {
+            canvas,
+            resized: resizedCanvas.toDataURL('image/jpeg', 1.0),
+          },
+          sizes: {
+            videoHeight: height,
+            videoWidth: width,
+            windowHeight: null,
+            windowWidth: windowWidth - Math.floor(windowWidth * 0.1),
+          },
+        })
+
+        refVideo.current.srcObject = stream
       })
   }
 
-  useEffect(() => {
-    if ( getProofOfDogQR ) {
-      const resizedCanvas = document.createElement('canvas')
-      const resizedContext = resizedCanvas.getContext('2d')
+  const handleLoadedData = () => {
+    setState({
+      cameraEnabled,
+      proofOfDog,
+      sizes: {
+        ...sizes,
+        windowHeight: refVideo.current.clientHeight,
+      }
+    })
+  }
 
-      resizedCanvas.height = 150
-      resizedCanvas.width = 150
-      resizedContext.drawImage(getProofOfDogQR(), 0, 0, 150, 150)
+  const handleMakePhoto = () => {
+    setLoading(true)
 
-      setProofOfDog(resizedCanvas.toDataURL())
-    }
-  })
+    // With hight load, need to update state and after download photo
+    setTimeout(() => {
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
+
+      canvas.height = sizes.videoHeight
+      canvas.width = sizes.videoWidth
+      ctx.drawImage(refVideo.current, 0, 0)
+      ctx.drawImage(
+        proofOfDog.canvas,
+        sizes.videoWidth - proofOfDog.canvas.clientWidth,
+        sizes.videoHeight - proofOfDog.canvas.clientHeight,
+      )
+
+      refDownload.current.href = canvas.toDataURL()
+      refDownload.current.click()
+
+      // We can't catch event when file is loaded, so read the file and then disable loading
+      canvas.toBlob(() => setLoading(false))
+    }, 500);
+  }
 
   return (
-    <S.Wrapper>
-      <S.Container>
-        {!camera
-          ? (<img alt="KYD Example" ref={exampleRef} src="/images/kyd-example2.jpg" />)
-          : (
-            <S.WebcamWrapper>
-              <Webcam
-                audio={false}
-                height={525}
-                ref={webcamRef}
-                screenshotFormat="image/jpeg"
-                videoConstraints={videoConstraints}
-              />
-              {proofOfDog && (<S.ProofOfDog alt="Proof of Doge" src={proofOfDog} />)}
-            </S.WebcamWrapper>
+    <div>
+      {!cameraEnabled
+        ? (
+            <S.ExampleWrapper>
+              <img alt="KYD Example" src="/images/kyd-example2.jpg" />
+            </S.ExampleWrapper>
           )
-        }
-      </S.Container>
-
+        : (
+          <S.VideoWrapper ref={refWrapper} width={sizes.windowWidth}>
+            {sizes.windowWidth && (
+              <video
+                autoPlay
+                playsInline
+                ref={refVideo}
+                onLoadedData={handleLoadedData}
+              />
+            )}
+            {proofOfDog && !!sizes.windowHeight && (
+              <S.ProofOfDog src={proofOfDog.resized} top={sizes.windowHeight - 75} />
+            )}
+          </S.VideoWrapper>
+        )
+      }
       {getProofOfDogQR && (
         <S.ButtonWrapper>
-          {!camera && (
-            <Button backgroundColor="primary" onClick={enableCamera} text={useCameraText} />
+          {!cameraEnabled && (
+            <Button backgroundColor="primary" onClick={handleEnableCamera} text={useCameraText} />
           )}
-          {!!camera && (
-            <Button backgroundColor="primary" onClick={makePhoto} text={makePhotoText} />
+          {cameraEnabled && (
+            <Button
+              backgroundColor="primary"
+              loading={loading}
+              onClick={handleMakePhoto}
+              text={makePhotoText}
+            />
           )}
         </S.ButtonWrapper>
       )}
-
       <a download="proofofdog-photo.jpeg" ref={refDownload} />
-    </S.Wrapper>
+    </div>
   )
 }
 
