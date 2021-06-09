@@ -85,6 +85,7 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
   const handleMakePhoto = () => {
     setLoading(true)
 
+    // With hight load, need to update state and after download photo
     setTimeout(() => {
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
