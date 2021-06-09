@@ -20,6 +20,7 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
   const refWrapper = useRef(null)
   const [state, setState] = useState({
     cameraEnabled: false,
+    loading: false,
     proofOfDog: null,
     sizes: {
       videoHeight: null,
@@ -28,7 +29,7 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
       windowWidth: null,
     }
   })
-  const { cameraEnabled, proofOfDog, sizes } = state
+  const { cameraEnabled, loading, proofOfDog, sizes } = state
 
   const [
     makePhotoText,
@@ -54,6 +55,7 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
 
         setState({
           cameraEnabled: true,
+          loading,
           proofOfDog: {
             canvas,
             resized: resizedCanvas.toDataURL('image/jpeg', 1.0),
@@ -73,6 +75,7 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
   const handleLoadedData = () => {
     setState({
       cameraEnabled,
+      loading,
       proofOfDog,
       sizes: {
         ...sizes,
@@ -85,6 +88,8 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
 
+    setState({ ...state, loading: true })
+
     canvas.height = sizes.videoHeight
     canvas.width = sizes.videoWidth
     ctx.drawImage(refVideo.current, 0, 0)
@@ -96,6 +101,14 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
 
     refDownload.current.href = canvas.toDataURL()
     refDownload.current.click()
+
+    // We can't catch event when file is loaded, so read the file and then disable loading
+    canvas.toBlob((blob) => {
+      const reader = new FileReader()
+
+      reader.onload = () => setState({ ...state, loading: false })
+      reader.readAsDataURL(blob)
+    })
   }
 
   return (
@@ -128,7 +141,12 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
             <Button backgroundColor="primary" onClick={handleEnableCamera} text="Use Camera" />
           )}
           {cameraEnabled && (
-            <Button backgroundColor="primary" onClick={handleMakePhoto} text="Make Photo" />
+            <Button
+              backgroundColor="primary"
+              loading={loading}
+              onClick={handleMakePhoto}
+              text="Make Photo"
+            />
           )}
         </S.ButtonWrapper>
       )}
