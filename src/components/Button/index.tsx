@@ -67,6 +67,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <S.Main
+      disabled={loading}
       textColor={textColor}
       backgroundColor={backgroundColor}
       layout={layout}

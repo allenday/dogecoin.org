@@ -85,10 +85,10 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
   }
 
   const handleMakePhoto = () => {
+    setState({ ...state, loading: true })
+
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
-
-    setState({ ...state, loading: true })
 
     canvas.height = sizes.videoHeight
     canvas.width = sizes.videoWidth
@@ -103,12 +103,7 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
     refDownload.current.click()
 
     // We can't catch event when file is loaded, so read the file and then disable loading
-    canvas.toBlob((blob) => {
-      const reader = new FileReader()
-
-      reader.onload = () => setState({ ...state, loading: false })
-      reader.readAsDataURL(blob)
-    })
+    canvas.toBlob(() => setState({ ...state, loading: false }))
   }
 
   return (

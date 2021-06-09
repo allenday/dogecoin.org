@@ -224,4 +224,14 @@ export const Main = styled.button<ButtonProps>`
     css`
       flex-direction: row-reverse;
     `}
+
+  ${(props) => props.disabled && css`
+    background-color: ${props.theme.colors.gray};
+    cursor: not-allowed !important;
+    pointer-events: all !important;
+
+    &:active {
+      background-color: ${props.theme.colors.gray};
+    }
+  `}
 `
