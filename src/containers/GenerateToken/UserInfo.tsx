@@ -35,22 +35,22 @@ const UserInfo: React.FC = ({ onGenerated, userInfo }) => {
     return refsQR[key].current.querySelector('canvas')
   }
 
-  const getSrcQR = async (key, scale = 2) => {
+  const getSrcQR = (key) => {
     return getCanvasQR(key).toDataURL('image/jpeg', 1.0)
   }
 
   const handleDownload = (key) => async () => {
     refDownload.current.setAttribute('download', key)
-    refDownload.current.href = await getSrcQR(key)
+    refDownload.current.href = getSrcQR(key)
     refDownload.current.click()
   }
 
-  useEffect(() => {
+  const handleGenerated = (dataURL) => {
     onGenerated({
       ...userInfo,
       proofOfDogQR: () => getCanvasQR('proofOfDog'),
     })
-  }, [dogname, publicKey, secretKey, twitter])
+  }
 
   return (
     <>
@@ -61,6 +61,7 @@ const UserInfo: React.FC = ({ onGenerated, userInfo }) => {
               info="PROOF_OF_DOGE"
               title={dogname}
               value={publicKeyUrl}
+              onRendered={handleGenerated}
             />
           </S.QRWrapper>
           <Button
