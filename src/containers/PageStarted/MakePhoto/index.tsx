@@ -3,9 +3,6 @@ import { useFormatMessages } from "../../../utils/hooks"
 
 import Button from "../../../components/Button"
 
-// With high load, we must use external button component to update button state
-import MakePhotoButton from "./MakePhotoBtn"
-
 import * as S from "./styled"
 
 const videoConstraints = {
@@ -18,11 +15,10 @@ const videoConstraints = {
 }
 
 const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
-  const [useCameraText] = useFormatMessages([{ id: "USE_CAMERA" }])
-  const refButton = useRef(null)
   const refDownload = useRef(null)
   const refVideo = useRef(null)
   const refWrapper = useRef(null)
+  const [loading, setLoading] = useState(false)
   const [state, setState] = useState({
     cameraEnabled: false,
     proofOfDog: null,
@@ -34,6 +30,14 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
     }
   })
   const { cameraEnabled, proofOfDog, sizes } = state
+
+  const [
+    makePhotoText,
+    useCameraText,
+  ] = useFormatMessages([
+    { id: "MAKE_PHOTO" },
+    { id: "USE_CAMERA" },
+  ])
 
   const handleEnableCamera = () => {
     const canvas = getProofOfDogQR()
@@ -79,23 +83,27 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
   }
 
   const handleMakePhoto = () => {
-    const canvas = document.createElement('canvas')
-    const ctx = canvas.getContext('2d')
+    setLoading(true)
 
-    canvas.height = sizes.videoHeight
-    canvas.width = sizes.videoWidth
-    ctx.drawImage(refVideo.current, 0, 0)
-    ctx.drawImage(
-      proofOfDog.canvas,
-      sizes.videoWidth - proofOfDog.canvas.clientWidth,
-      sizes.videoHeight - proofOfDog.canvas.clientHeight,
-    )
+    setTimeout(() => {
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
 
-    refDownload.current.href = canvas.toDataURL()
-    refDownload.current.click()
+      canvas.height = sizes.videoHeight
+      canvas.width = sizes.videoWidth
+      ctx.drawImage(refVideo.current, 0, 0)
+      ctx.drawImage(
+        proofOfDog.canvas,
+        sizes.videoWidth - proofOfDog.canvas.clientWidth,
+        sizes.videoHeight - proofOfDog.canvas.clientHeight,
+      )
 
-    // We can't catch event when file is loaded, so read the file and then disable loading
-    canvas.toBlob(() => refButton.current.setEnabled())
+      refDownload.current.href = canvas.toDataURL()
+      refDownload.current.click()
+
+      // We can't catch event when file is loaded, so read the file and then disable loading
+      canvas.toBlob(() => setLoading(false))
+    }, 500);
   }
 
   return (
@@ -128,7 +136,12 @@ const MakePhoto: React.FC = ({ getProofOfDogQR }) => {
             <Button backgroundColor="primary" onClick={handleEnableCamera} text={useCameraText} />
           )}
           {cameraEnabled && (
-            <MakePhotoButton forwardRed={refButton} onClick={handleMakePhoto} />
+            <Button
+              backgroundColor="primary"
+              loading={loading}
+              onClick={handleMakePhoto}
+              text={makePhotoText}
+            />
           )}
         </S.ButtonWrapper>
       )}
