@@ -162,6 +162,10 @@ export const Main = styled.button<ButtonProps>`
       color: ${props.theme.colors.white};
       background-color: ${props.theme.colors.primary};
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+
+      &:active {
+        background-color: ${props.theme.colors.primaryActive};
+      }
     `}
 
   // icons
@@ -220,4 +224,14 @@ export const Main = styled.button<ButtonProps>`
     css`
       flex-direction: row-reverse;
     `}
+
+  ${(props) => props.disabled && css`
+    background-color: ${props.theme.colors.gray};
+    cursor: not-allowed !important;
+    pointer-events: all !important;
+
+    &:active {
+      background-color: ${props.theme.colors.gray};
+    }
+  `}
 `
